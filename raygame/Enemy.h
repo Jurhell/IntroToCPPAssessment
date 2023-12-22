@@ -13,6 +13,7 @@ public:
 
 private:
 	Actor* m_target;
+	Enemy* m_test;
 	float m_enemyRadius;
 	float m_enemyView;
 };
