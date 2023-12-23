@@ -153,8 +153,10 @@
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ProjectileComponent.cpp" />
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
@@ -168,7 +170,9 @@
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="ProjectileComponent.h" />
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpriteComponent.h" />
