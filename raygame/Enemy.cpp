@@ -2,7 +2,8 @@
 #include "ActorArray.h"
 #include "Transform2D.h"
 #include "CircleCollider.h"
-//#include "MoveComponent.h"
+#include "MoveComponent.h"
+#include "Actor.h"
 #include <cmath>
 
 Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float enemyRadius, float enemyView, float health) : Actor(0, 0, "")
@@ -28,6 +29,9 @@ void Enemy::start()
 
 void Enemy::update(float deltaTime)
 {;
+    //Creating move component for enemy
+	MoveComponent* enemyMove = (MoveComponent*)this->addComponent(new MoveComponent(10, this));
+
 	//Getting transforms for player and enemy
 	Transform2D* test = m_target->getTransform();
 	Transform2D* test2 = this->getTransform();
@@ -48,9 +52,10 @@ void Enemy::update(float deltaTime)
 	if (radians >= m_enemyRadius || test->getLocalPosition().x <= m_enemyView || test->getLocalPosition().y <= m_enemyView)
 		return;
 
-	//Moves enemy towards player after passing checks. Replace with Move Component once completed
-	MathLibrary::Vector2 velocity = playerDirection * 100;
-	test2->setLocalPosition(velocity * deltaTime);
+
+	//Moves enemy towards player after passing checks.
+	enemyMove->setVelocity(playerDirection * 100);
+	test2->setLocalPosition(enemyMove->getVelocity() * deltaTime);
 }
 
 void Enemy::draw()
