@@ -5,11 +5,12 @@
 class Enemy : public Actor
 {
 public:
-	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float enemyRadius, float enemyView);
+	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float enemyRadius, float enemyView, float health);
 	~Enemy();
 
-	void update();
-	void draw();
+	void start() override;
+	void update(float deltaTime) override;
+	void draw() override;
 
 private:
 	Actor* m_target;
