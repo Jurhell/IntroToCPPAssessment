@@ -3,7 +3,7 @@
 #include "Actor.h"
 
 
-MoveComponent::MoveComponent(float maxSpeed, Actor* owner) : Component(owner, "MoveComponet")
+MoveComponent::MoveComponent(float maxSpeed, Actor* owner) : Component(owner, "MoveComponent")
 {
 	m_maxSpeed = maxSpeed;
 }

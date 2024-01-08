@@ -3,7 +3,7 @@
 #include "Transform2D.h"
 #include "CircleCollider.h"
 #include "MoveComponent.h"
-#include "Actor.h"
+#include "ProjectileComponent.h"
 #include <cmath>
 
 Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float enemyRadius, float enemyView, float health) : Actor(0, 0, "")
@@ -17,14 +17,6 @@ Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 positio
 Enemy::~Enemy()
 {
 	delete m_target;
-	delete m_test;
-}
-
-void Enemy::start()
-{
-	//Placeholder collider, may rework in future to work with actor array
-	CircleCollider* enemyCollider = new CircleCollider(2, this);
-	this->setCollider(enemyCollider);
 }
 
 void Enemy::update(float deltaTime)
@@ -52,13 +44,23 @@ void Enemy::update(float deltaTime)
 	if (radians >= m_enemyRadius || test->getLocalPosition().x <= m_enemyView || test->getLocalPosition().y <= m_enemyView)
 		return;
 
-
-	//Moves enemy towards player after passing checks.
+	//Moves enemy towards player after passing checks
 	enemyMove->setVelocity(playerDirection * 100);
 	test2->setLocalPosition(enemyMove->getVelocity() * deltaTime);
+
+	////Creating projectile component for enemy 
+	//ProjectileComponent* bulletSpawner = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, test2->getWorldPosition(), 5, "Images/bullet.png"));
+
+	//m_currentTime += deltaTime;
+
+	////Should fire a projectile after a certain amount of time has passed
+	//if (m_currentTime >= m_fireTime)
+	//	bulletSpawner->spawnProjectile();
 }
 
-void Enemy::draw()
-{
-
-}
+//void Enemy::spawnEnemy()
+//{
+//	//Giving a circle collider to every actor added to scene
+//	CircleCollider* enemyCollider = new CircleCollider(2, this);
+//	this->setCollider(enemyCollider);
+//}
