@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-//#include "Bullet.h"
+#include "Bullet.h"
 #include <Vector2.h>
 
 
