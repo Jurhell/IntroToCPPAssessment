@@ -1,6 +1,9 @@
 #pragma once
 #include "Actor.h"
 #include <Vector2.h>
+class MoveComponent;
+class CircleCollider;
+class ProjectileComponent;
 
 class Enemy : public Actor
 {
@@ -9,10 +12,12 @@ public:
 	~Enemy();
 
 	void update(float deltaTime) override;
-	void spawnEnemy();
 
 private:
 	Actor* m_target;
+	MoveComponent* m_enemyMove;
+	CircleCollider* m_enemyCollider;
+	ProjectileComponent* m_bulletSpawner;
 	float m_enemyRadius;
 	float m_enemyView;
 	float m_currentTime;
