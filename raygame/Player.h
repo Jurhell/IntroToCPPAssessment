@@ -2,7 +2,7 @@
 #include "Transform2D.h"
 
 
-class Player
+class Player : public Actor
 {
 public:
 	Player(const char* spritepath, float speed, float health, MathLibrary::Vector2 position);
@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// Will calaculate health/life loss on collsion with another object.
 	/// </summary>
-	void OnCollision(Actor other);
+	void onCollision(Actor other) override;
 
 	/// <summary>
 	/// Contains button attachment to movement and shooting along with speed/velocity management.

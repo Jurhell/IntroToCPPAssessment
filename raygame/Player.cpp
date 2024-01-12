@@ -10,8 +10,6 @@ Player::Player(const char* spritepath, float speed, float health, MathLibrary::V
 	health = m_health;
 	
 	SpriteComponent* spriteComponent = new SpriteComponent((Actor*)this, spritepath);
-
-
 };
 
 Player::~Player()
@@ -19,7 +17,7 @@ Player::~Player()
 	delete this;
 };
 
-void OnCollision(Actor other)
+void onCollision(Actor other)
 {
 
 };
@@ -48,6 +46,4 @@ void Update(float deltaTime)
 	{
 		m_direction = MathLibrary::Vector2(1, 0);
 	}
-
-
 };
