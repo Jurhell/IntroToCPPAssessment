@@ -17,10 +17,10 @@ Player::~Player()
 	delete this;
 };
 
-void onCollision(Actor other)
-{
-
-};
+//void onCollision(Actor other)
+//{
+//
+//};
 
 void Update(float deltaTime)
 {

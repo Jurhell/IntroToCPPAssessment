@@ -8,7 +8,8 @@ class ProjectileComponent;
 class Enemy : public Actor
 {
 public:
-	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float enemyRadius, float enemyView, float health);
+	Enemy();
+	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float health);
 	~Enemy();
 
 	void update(float deltaTime) override;

@@ -4,13 +4,17 @@
 #include "CircleCollider.h"
 #include "MoveComponent.h"
 #include "ProjectileComponent.h"
+#include "SpriteComponent.h"
 #include <cmath>
 
-Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float enemyRadius, float enemyView, float health) : Actor(0, 0, "")
+Enemy::Enemy() : Actor(0, 0, "")
+{
+	m_target = nullptr;
+}
+
+Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float health) : Actor(0, 0, "")
 {
 	m_target = target;
-	m_enemyRadius = enemyRadius;
-	m_enemyView = enemyView;
 	health = 10;
 	getTransform()->setLocalPosition({ position });
 
@@ -23,6 +27,10 @@ Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 positio
 
 	//Addding projectile spawner to enemy
 	m_bulletSpawner = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, 5, "Images/bullet.png"));
+
+	//Adding sprite and setting enemy scale
+	addComponent(new SpriteComponent(this, "Images/enemy.png"));
+	getTransform()->setScale({ 62, 62 });
 }
 
 Enemy::~Enemy()
@@ -54,7 +62,10 @@ void Enemy::update(float deltaTime)
 
 	//Should fire a projectile after a certain amount of time has passed
 	if (m_currentTime >= m_fireTime)
+	{
 		m_bulletSpawner->spawnProjectile();
+		m_currentTime = 0;
+	}
 
 	//Stops if player is behind enemy, out of view or outside of radius
 	//if (dotProduct <= 0 || radians >= m_enemyRadius)

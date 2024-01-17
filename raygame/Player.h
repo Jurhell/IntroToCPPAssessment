@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// Will calaculate health/life loss on collsion with another object.
 	/// </summary>
-	void onCollision(Actor other) override;
+	//void onCollision(Actor other) override;
 
 	/// <summary>
 	/// Contains button attachment to movement and shooting along with speed/velocity management.
