@@ -64,7 +64,7 @@ void Enemy::update(float deltaTime)
 
 	//Moves enemy towards player after passing checks
 	m_enemyMove->setVelocity(playerDirection * 100);
-	getTransform()->setForward(playerDirection);
+	getTransform()->lookAt(test->getLocalPosition());
 
 
 }
