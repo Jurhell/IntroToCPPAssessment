@@ -15,14 +15,14 @@ Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 positio
 	getTransform()->setLocalPosition({ position });
 
 	//Adding move component to enemy
-	m_enemyMove = (MoveComponent*)this->addComponent(new MoveComponent(10, this));
+	m_enemyMove = (MoveComponent*)this->addComponent(new MoveComponent(150, this));
 
 	//Adding collider to enemy
 	m_enemyCollider = new CircleCollider(50, this);
 	this->setCollider(m_enemyCollider);
 
 	//Addding projectile spawner to enemy
-	m_bulletSpawner = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, target->getTransform()->getWorldPosition(), 5, "Images/bullet.png"));
+	m_bulletSpawner = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, 5, "Images/bullet.png"));
 }
 
 Enemy::~Enemy()
@@ -57,14 +57,13 @@ void Enemy::update(float deltaTime)
 		m_bulletSpawner->spawnProjectile();
 
 	//Stops if player is behind enemy, out of view or outside of radius
-	if (dotProduct <= 0 || radians >= m_enemyRadius)
-		return;
+	//if (dotProduct <= 0 || radians >= m_enemyRadius)
+	//	return;
 	//if (test->getLocalPosition().x >= m_enemyView && test->getLocalPosition().y >= m_enemyView)
 	//	return;
 
 	//Moves enemy towards player after passing checks
 	m_enemyMove->setVelocity(playerDirection * 100);
-	getTransform()->setLocalPosition(m_enemyMove->getVelocity() * deltaTime);
 	getTransform()->setForward(playerDirection);
 
 

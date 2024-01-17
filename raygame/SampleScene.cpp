@@ -9,11 +9,11 @@ void SampleScene::start()
 	Scene::start();
 
 	//This is a better comment
-	Actor* test = new Actor(250, 100, "Test");
+	Actor* test = new Actor(350, 750, "Test");
 	test->addComponent(new SpriteComponent(test, "Images/player.png"));
 	test->getTransform()->setScale({ 50, 50 });
 	
-	MathLibrary::Vector2 startPos = { 100,100 };
+	MathLibrary::Vector2 startPos = { 350,100 };
 
 	//Initializing enemy
 	m_test = new Enemy(test, "Images/enemy.png", startPos, 0.5f, 250, 0);

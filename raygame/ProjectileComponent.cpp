@@ -1,10 +1,12 @@
 #include "ProjectileComponent.h"
+#include "Bullet.h"
 #include "CircleCollider.h"
 #include "Transform2D.h"
-#include "Actor.h"
+#include "Engine.h"
+#include "Scene.h"
 
 
-ProjectileComponent::ProjectileComponent(Actor* owner, MathLibrary::Vector2 position, float projectileSpeed, const char* projectileSpritePath) : Component(owner, "ProjectileSpawnerComponent")
+ProjectileComponent::ProjectileComponent(Actor* owner, float projectileSpeed, const char* projectileSpritePath) : Component(owner, "ProjectileSpawner")
 {
 	m_owner = owner;
 	m_projectileSpeed = projectileSpeed;
@@ -13,12 +15,14 @@ ProjectileComponent::ProjectileComponent(Actor* owner, MathLibrary::Vector2 posi
 
 void ProjectileComponent::spawnProjectile()
 {
-	//Getting the transform of the parent actor
-	Transform2D* test = m_owner->getTransform();
+	//Creating variables to make code more readable
+	MathLibrary::Vector2 velocity = m_owner->getTransform()->getForward() * m_projectileSpeed;
+	MathLibrary::Vector2 position = m_owner->getTransform()->getWorldPosition();
 
 	//Creating a new instance of a bullet
-	Bullet* bullet = new Bullet(m_owner, test->getWorldPosition(), test->getForward() * m_projectileSpeed);
+	Bullet* bullet = new Bullet(m_owner, position, velocity);
 
 	CircleCollider* bulletCollider = new CircleCollider(2, bullet);
 	bullet->setCollider(bulletCollider);
+	Engine::getCurrentScene()->addActor(bullet);
 }
