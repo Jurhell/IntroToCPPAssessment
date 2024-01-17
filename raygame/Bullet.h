@@ -6,7 +6,7 @@
 class Bullet : public Actor
 {
 public:
-	Bullet(Actor* owner, MathLibrary::Vector2 position, MathLibrary::Vector2 velocity);
+	Bullet(Actor* owner, MathLibrary::Vector2 position, MathLibrary::Vector2 velocity, const char* spritepath);
 
 	void onCollision(Actor* other);
 	
