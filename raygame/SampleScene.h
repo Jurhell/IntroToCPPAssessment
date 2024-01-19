@@ -14,7 +14,7 @@ private:
     ActorArray m_actors;
     Player* m_player;
     Actor* m_planet;
-    Enemy* m_child;
+    Actor* m_child;
     Enemy* m_test;
     Enemy* m_test2;
     Enemy* m_test3;

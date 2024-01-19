@@ -9,22 +9,28 @@ void SampleScene::start()
 {
 	Scene::start();
 
-	//Initializing player
+	//Initializing player, planet and child
 	m_player = new Player("Images/player.png", 100, 3, {350, 750});
 	m_player->addComponent(new SpriteComponent(m_player, "Images/player.png"));
 	m_player->getTransform()->setScale({ 50, 50 });
+
+	m_planet = new Actor(350, 10, "Images/planet.png");
+	m_planet->addComponent(new SpriteComponent(m_planet, "Images/planet.png"));
+	m_planet->getTransform()->setScale({ 150, 150 });
+
+	m_child = new Actor(1, 1, "Images/enemy.png");
+	m_child->addComponent(new SpriteComponent(m_child, "Images/enemy.png"));
+	m_child->getTransform()->setScale({ .4f, .4f });
 	
+
 	//Creating enemy start positions
 	MathLibrary::Vector2 startPos = { 350,50 };
 	MathLibrary::Vector2 startPos2 = { 150,50 };
 	MathLibrary::Vector2 startPos3 = { 550,50 };
 	MathLibrary::Vector2 startPos4 = { 250,50 };
 	MathLibrary::Vector2 startPos5 = { 450,50 };
-	MathLibrary::Vector2 startPos6 = { 1,1 };
 
 	//Initializing enemies
-	m_planet = new Actor(350, 10, "Images/planet.png");
-	m_child = new Enemy(m_player, "Images/enemy.png", startPos6);
 	m_test = new Enemy(m_player, "Images/enemy.png", startPos);
 	m_test2 = new Enemy(m_player, "Images/enemy.png", startPos2);
 	m_test3 = new Enemy(m_player, "Images/enemy.png", startPos3);
@@ -48,6 +54,9 @@ void SampleScene::start()
 void SampleScene::update(float deltaTime)
 {
 	Scene::update(deltaTime);
+
+	m_planet->getTransform()->rotate(2 * deltaTime);
+	m_child->getTransform()->rotate(2 * deltaTime);
 
 	m_currentTime += deltaTime;
 
