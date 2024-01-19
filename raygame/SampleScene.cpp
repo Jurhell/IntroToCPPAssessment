@@ -20,9 +20,11 @@ void SampleScene::start()
 	MathLibrary::Vector2 startPos3 = { 550,50 };
 	MathLibrary::Vector2 startPos4 = { 250,50 };
 	MathLibrary::Vector2 startPos5 = { 450,50 };
+	MathLibrary::Vector2 startPos6 = { 1,1 };
 
 	//Initializing enemies
-	m_planet = new Enemy(m_player, "Images/");
+	m_planet = new Actor(350, 10, "Images/planet.png");
+	m_child = new Enemy(m_player, "Images/enemy.png", startPos6);
 	m_test = new Enemy(m_player, "Images/enemy.png", startPos);
 	m_test2 = new Enemy(m_player, "Images/enemy.png", startPos2);
 	m_test3 = new Enemy(m_player, "Images/enemy.png", startPos3);
@@ -32,8 +34,15 @@ void SampleScene::start()
 	//Creating enemy array
 	m_enemies = new Enemy*[5] { m_test, m_test2, m_test3, m_test4, m_test5 };
 
+	Transform2D* test = m_planet->getTransform();
+	Transform2D* test2 = m_child->getTransform();
+
+	test->addChild(test2);
+
 	//Adding player to scene
 	addActor(m_player);
+	addActor(m_planet);
+	addActor(m_child);
 }
 
 void SampleScene::update(float deltaTime)

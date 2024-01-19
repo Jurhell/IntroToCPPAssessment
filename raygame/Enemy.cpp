@@ -67,12 +67,6 @@ void Enemy::update(float deltaTime)
 		m_currentTime = 0;
 	}
 
-	//Stops if player is behind enemy, out of view or outside of radius
-	//if (dotProduct <= 0 || radians >= m_enemyRadius)
-	//	return;
-	//if (test->getLocalPosition().x >= m_enemyView && test->getLocalPosition().y >= m_enemyView)
-	//	return;
-
 	//Moves enemy towards player after passing checks
 	m_enemyMove->setVelocity(playerDirection * 80);
 	getTransform()->lookAt(test->getLocalPosition());

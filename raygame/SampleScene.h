@@ -13,7 +13,8 @@ public:
 private:
     ActorArray m_actors;
     Player* m_player;
-    Enemy* m_planet;
+    Actor* m_planet;
+    Enemy* m_child;
     Enemy* m_test;
     Enemy* m_test2;
     Enemy* m_test3;
