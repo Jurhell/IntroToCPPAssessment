@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+class Player;
 class Enemy;
 
 class SampleScene :
@@ -11,6 +12,7 @@ public:
 
 private:
     ActorArray m_actors;
+    Player* m_player;
     Enemy* m_test;
     Enemy* m_test2;
     Enemy* m_test3;

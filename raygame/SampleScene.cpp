@@ -10,9 +10,9 @@ void SampleScene::start()
 	Scene::start();
 
 	//This is a better comment
-	Player* test = new Player("Images/player.png", 100, 3, {350, 750});
-	test->addComponent(new SpriteComponent(test, "Images/player.png"));
-	test->getTransform()->setScale({ 50, 50 });
+	m_player = new Player("Images/player.png", 100, 3, {350, 750});
+	m_player->addComponent(new SpriteComponent(m_player, "Images/player.png"));
+	m_player->getTransform()->setScale({ 50, 50 });
 	
 	MathLibrary::Vector2 startPos = { 350,50 };
 	MathLibrary::Vector2 startPos2 = { 150,50 };
@@ -21,15 +21,15 @@ void SampleScene::start()
 	MathLibrary::Vector2 startPos5 = { 450,50 };
 
 	//Initializing enemies
-	m_test = new Enemy(test, "Images/enemy.png", startPos);
-	m_test2 = new Enemy(test, "Images/enemy.png", startPos2);
-	m_test3 = new Enemy(test, "Images/enemy.png", startPos3);
-	m_test4 = new Enemy(test, "Images/enemy.png", startPos4);
-	m_test5 = new Enemy(test, "Images/enemy.png", startPos5);
+	m_test = new Enemy(m_player, "Images/enemy.png", startPos);
+	m_test2 = new Enemy(m_player, "Images/enemy.png", startPos2);
+	m_test3 = new Enemy(m_player, "Images/enemy.png", startPos3);
+	m_test4 = new Enemy(m_player, "Images/enemy.png", startPos4);
+	m_test5 = new Enemy(m_player, "Images/enemy.png", startPos5);
 
 	m_enemies = new Enemy*[5] { m_test, m_test2, m_test3, m_test4, m_test5 };
 
-	addActor(test);
+	addActor(m_player);
 }
 
 void SampleScene::update(float deltaTime)
@@ -53,5 +53,12 @@ void SampleScene::update(float deltaTime)
 		if (m_currentEnemyIndex == 5)
 			m_currentEnemyIndex = 0;
 	}
+
+	if (m_player = nullptr)
+		addActor(m_player);
+
+	if (m_enemiesInScene == 5)
+		m_enemiesInScene = 0;
+
 }
 

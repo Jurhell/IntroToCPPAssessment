@@ -12,6 +12,7 @@ Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Ve
 {
 	speed = m_speed;
 	lives = m_lives;
+	m_gun = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, 175, "Images/bullet.png"));
 	
 	getTransform()->setLocalPosition(position);
 	getTransform()->setForward({0,-1});
