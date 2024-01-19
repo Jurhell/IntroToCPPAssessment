@@ -17,7 +17,7 @@ void ProjectileComponent::spawnProjectile()
 	Transform2D* test = m_owner->getTransform();
 
 	//Creating a new instance of a bullet
-	Bullet* bullet = new Bullet(m_owner, test->getWorldPosition(), test->getForward() * m_projectileSpeed);
+	Bullet* bullet = new Bullet(m_owner, test->getWorldPosition(), test->getForward() * m_projectileSpeed, m_projectileSpritePath);
 
 	CircleCollider* bulletCollider = new CircleCollider(2, bullet);
 	bullet->setCollider(bulletCollider);

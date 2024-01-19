@@ -7,7 +7,7 @@ class ProjectileComponent;
 class Player : public Actor
 {
 public:
-	Player(const char* spritepath, float speed, float health, MathLibrary::Vector2 position);
+	Player(const char* spritepath, float speed, float lives, MathLibrary::Vector2 position);
 	~Player();
 
 	/// <summary>

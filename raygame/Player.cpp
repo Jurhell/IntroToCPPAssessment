@@ -13,6 +13,9 @@ Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Ve
 	speed = m_speed;
 	lives = m_lives;
 	
+	getTransform()->setLocalPosition(position);
+	getTransform()->setForward({0,-1});
+
 	//Attaching image to player
 	SpriteComponent* spriteComponent = new SpriteComponent((Actor*)this, spritepath);
 
@@ -20,7 +23,7 @@ Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Ve
 	m_playerCollider = new CircleCollider(25, this);
 	this->setCollider(m_playerCollider);
 
-	m_moveComponent = (MoveComponent*)this->addComponent(new MoveComponent(100, this));
+	m_moveComponent = (MoveComponent*)this->addComponent(new MoveComponent(155, this));
 };
 
 void Player::onDestroy()
@@ -36,6 +39,7 @@ void Player::onDestroy()
 
 void Player::update(float deltaTime)
 {
+	Actor::update(deltaTime);
 	MathLibrary::Vector2 m_direction;
 
 	//Get key input from player
@@ -59,4 +63,6 @@ void Player::update(float deltaTime)
 	{
 		m_direction = MathLibrary::Vector2(1, 0);
 	}
+
+	m_moveComponent->setVelocity(m_direction * 100);
 };
