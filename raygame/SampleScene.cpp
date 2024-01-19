@@ -22,6 +22,7 @@ void SampleScene::start()
 	MathLibrary::Vector2 startPos5 = { 450,50 };
 
 	//Initializing enemies
+	m_planet = new Enemy(m_player, "Images/");
 	m_test = new Enemy(m_player, "Images/enemy.png", startPos);
 	m_test2 = new Enemy(m_player, "Images/enemy.png", startPos2);
 	m_test3 = new Enemy(m_player, "Images/enemy.png", startPos3);

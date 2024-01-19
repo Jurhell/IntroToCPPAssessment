@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Actor.h"
 #include "ActorArray.h"
 #include "Transform2D.h"
 #include "CircleCollider.h"

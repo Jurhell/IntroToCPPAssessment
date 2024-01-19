@@ -97,5 +97,6 @@ private:
     Collider* m_collider;
     Component** m_components;
     int m_componentCount;
+    Actor* m_parent;
 };
 
