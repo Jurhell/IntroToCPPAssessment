@@ -8,6 +8,7 @@ class ProjectileComponent;
 class Enemy : public Actor
 {
 public:
+	//Creating enemy constructors and update function
 	Enemy();
 	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position);
 	~Enemy();

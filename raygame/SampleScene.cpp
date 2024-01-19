@@ -9,11 +9,12 @@ void SampleScene::start()
 {
 	Scene::start();
 
-	//This is a better comment
+	//Initializing player
 	m_player = new Player("Images/player.png", 100, 3, {350, 750});
 	m_player->addComponent(new SpriteComponent(m_player, "Images/player.png"));
 	m_player->getTransform()->setScale({ 50, 50 });
 	
+	//Creating enemy start positions
 	MathLibrary::Vector2 startPos = { 350,50 };
 	MathLibrary::Vector2 startPos2 = { 150,50 };
 	MathLibrary::Vector2 startPos3 = { 550,50 };
@@ -27,18 +28,16 @@ void SampleScene::start()
 	m_test4 = new Enemy(m_player, "Images/enemy.png", startPos4);
 	m_test5 = new Enemy(m_player, "Images/enemy.png", startPos5);
 
+	//Creating enemy array
 	m_enemies = new Enemy*[5] { m_test, m_test2, m_test3, m_test4, m_test5 };
 
+	//Adding player to scene
 	addActor(m_player);
 }
 
 void SampleScene::update(float deltaTime)
 {
 	Scene::update(deltaTime);
-
-	//Printing enemy position to console
-	//std::cout << "\nx position:" << m_test->getTransform()->getLocalPosition().x << std::endl;
-	//std::cout << "y position:" << m_test->getTransform()->getLocalPosition().y << std::endl;
 
 	m_currentTime += deltaTime;
 
@@ -50,15 +49,15 @@ void SampleScene::update(float deltaTime)
 		m_enemiesInScene++;
 		m_currentTime = 0;
 
+		//Resetting enemy indexes to allow enemes to respawn
 		if (m_currentEnemyIndex == 5)
 			m_currentEnemyIndex = 0;
+	    if (m_enemiesInScene == 5)
+		    m_enemiesInScene = 0;
 	}
 
+	//Respawning player if destroyed
 	if (m_player = nullptr)
 		addActor(m_player);
-
-	if (m_enemiesInScene == 5)
-		m_enemiesInScene = 0;
-
 }
 
