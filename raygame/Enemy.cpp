@@ -12,10 +12,9 @@ Enemy::Enemy() : Actor(0, 0, "")
 	m_target = nullptr;
 }
 
-Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float health) : Actor(0, 0, "")
+Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position) : Actor(0, 0, "")
 {
 	m_target = target;
-	health = 10;
 	getTransform()->setLocalPosition({ position });
 
 	//Adding move component to enemy
@@ -26,7 +25,7 @@ Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 positio
 	this->setCollider(m_enemyCollider);
 
 	//Addding projectile spawner to enemy
-	m_bulletSpawner = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, 5, "Images/bullet.png"));
+	m_bulletSpawner = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, 175, "Images/bullet.png"));
 
 	//Adding sprite and setting enemy scale
 	addComponent(new SpriteComponent(this, "Images/enemy.png"));
@@ -74,7 +73,7 @@ void Enemy::update(float deltaTime)
 	//	return;
 
 	//Moves enemy towards player after passing checks
-	m_enemyMove->setVelocity(playerDirection * 100);
+	m_enemyMove->setVelocity(playerDirection * 80);
 	getTransform()->lookAt(test->getLocalPosition());
 
 

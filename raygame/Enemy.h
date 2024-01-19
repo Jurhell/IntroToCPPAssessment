@@ -9,7 +9,7 @@ class Enemy : public Actor
 {
 public:
 	Enemy();
-	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position, float health);
+	Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position);
 	~Enemy();
 
 	void update(float deltaTime) override;

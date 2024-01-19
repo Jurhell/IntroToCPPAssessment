@@ -17,10 +17,11 @@ void ProjectileComponent::spawnProjectile()
 {
 	//Creating variables to make code more readable
 	MathLibrary::Vector2 velocity = m_owner->getTransform()->getForward() * m_projectileSpeed;
-	MathLibrary::Vector2 position = m_owner->getTransform()->getWorldPosition() * 25;
+	MathLibrary::Vector2 position = m_owner->getTransform()->getWorldPosition() + getOwner()->getTransform()->getForward() * 25;
 
 	//Creating a new instance of a bullet
-	Bullet* bullet = new Bullet(m_owner, position, velocity, "Images/bullet.png");
+	Bullet* bullet = new Bullet(m_owner, position, velocity, m_projectileSpritePath);
+	bullet->getTransform()->setScale({ 20, 20 });
 
 	//Giving bullet a collider and adding it to scene
 	CircleCollider* bulletCollider = new CircleCollider(2, bullet);

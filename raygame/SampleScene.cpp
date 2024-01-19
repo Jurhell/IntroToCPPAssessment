@@ -20,11 +20,11 @@ void SampleScene::start()
 	MathLibrary::Vector2 startPos5 = { 450,50 };
 
 	//Initializing enemies
-	m_test = new Enemy(test, "Images/enemy.png", startPos, 1);
-	m_test2 = new Enemy(test, "Images/enemy.png", startPos2, 1);
-	m_test3 = new Enemy(test, "Images/enemy.png", startPos3, 1);
-	m_test4 = new Enemy(test, "Images/enemy.png", startPos4, 1);
-	m_test5 = new Enemy(test, "Images/enemy.png", startPos5, 1);
+	m_test = new Enemy(test, "Images/enemy.png", startPos);
+	m_test2 = new Enemy(test, "Images/enemy.png", startPos2);
+	m_test3 = new Enemy(test, "Images/enemy.png", startPos3);
+	m_test4 = new Enemy(test, "Images/enemy.png", startPos4);
+	m_test5 = new Enemy(test, "Images/enemy.png", startPos5);
 
 	m_enemies = new Enemy*[5] { m_test, m_test2, m_test3, m_test4, m_test5 };
 
@@ -41,6 +41,7 @@ void SampleScene::update(float deltaTime)
 
 	m_currentTime += deltaTime;
 
+	//Spawning enemies in on a timer and putting a cap on the number of enemies
 	if (m_currentTime >= m_timeToSpawn && m_enemiesInScene < 6)
 	{
 		addActor(m_enemies[m_currentEnemyIndex]);
@@ -53,7 +54,3 @@ void SampleScene::update(float deltaTime)
 	}
 }
 
-void SampleScene::draw()
-{
-	Scene::draw();
-}

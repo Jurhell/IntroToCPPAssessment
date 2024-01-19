@@ -8,7 +8,6 @@ class SampleScene :
 public:
     void start() override;
     void update(float deltaTime) override;
-    void draw() override;
 
 private:
     ActorArray m_actors;
