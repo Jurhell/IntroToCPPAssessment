@@ -3,13 +3,14 @@
 #include "Transform2D.h"
 #include "Enemy.h"
 #include <iostream>
+#include "Player.h"
 
 void SampleScene::start()
 {
 	Scene::start();
 
 	//This is a better comment
-	Actor* test = new Actor(350, 750, "Test");
+	Player* test = new Player("Images/player.png", 100, 3, {350, 750});
 	test->addComponent(new SpriteComponent(test, "Images/player.png"));
 	test->getTransform()->setScale({ 50, 50 });
 	

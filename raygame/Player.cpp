@@ -3,32 +3,49 @@
 #include "Transform2D.h"
 #include "raylib.h"
 #include "SpriteComponent.h"
+#include "MoveComponent.h"
+#include "CircleCollider.h"
+#include "Engine.h"
+#include "ProjectileComponent.h"
 
-Player::Player(const char* spritepath, float speed, float health, MathLibrary::Vector2 position)
+Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Vector2 position)
 {
 	speed = m_speed;
-	health = m_health;
+	lives = m_lives;
 	
+	getTransform()->setLocalPosition(position);
+	getTransform()->setForward({0,-1});
+
+	//Attaching image to player
 	SpriteComponent* spriteComponent = new SpriteComponent((Actor*)this, spritepath);
+
+	//Creating circle collider for player
+	m_playerCollider = new CircleCollider(25, this);
+	this->setCollider(m_playerCollider);
+
+	m_moveComponent = (MoveComponent*)this->addComponent(new MoveComponent(155, this));
 };
 
-Player::~Player()
+void Player::onDestroy()
 {
-	delete this;
-};
+	//takes away 1 life from the player
+	m_lives--;
 
-//void onCollision(Actor other)
-//{
-//
-//};
+	if (m_lives >= 0)
+	{
+		Engine::CloseApplication();
+	}
+}
 
-void Update(float deltaTime)
+void Player::update(float deltaTime)
 {
+	Actor::update(deltaTime);
 	MathLibrary::Vector2 m_direction;
 
-	if (RAYLIB_H::IsKeyDown(KeyboardKey::KEY_SPACE))
+	//Get key input from player
+	if (RAYLIB_H::IsMouseButtonPressed(0))
 	{
-		
+		m_gun->spawnProjectile();
 	}
 	if (RAYLIB_H::IsKeyDown(KeyboardKey::KEY_W))
 	{
@@ -46,4 +63,6 @@ void Update(float deltaTime)
 	{
 		m_direction = MathLibrary::Vector2(1, 0);
 	}
+
+	m_moveComponent->setVelocity(m_direction * 100);
 };

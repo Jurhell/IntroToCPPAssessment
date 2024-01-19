@@ -1,24 +1,28 @@
 #include "Actor.h"
 #include "Transform2D.h"
-
+class CircleCollider;
+class MoveComponent;
+class ProjectileComponent;
 
 class Player : public Actor
 {
 public:
-	Player(const char* spritepath, float speed, float health, MathLibrary::Vector2 position);
+	Player(const char* spritepath, float speed, float lives, MathLibrary::Vector2 position);
 	~Player();
-
-	/// <summary>
-	/// Will calaculate health/life loss on collsion with another object.
-	/// </summary>
-	//void onCollision(Actor other) override;
 
 	/// <summary>
 	/// Contains button attachment to movement and shooting along with speed/velocity management.
 	/// </summary>
-	void Update(float deltaTime);
+	void update(float deltaTime) override;
 
+	void onDestroy() override;
+
+	bool m_result;
 private:
 	float m_speed;
-	float m_health;
+	float m_lives;
+	ProjectileComponent* m_gun;
+	CircleCollider* m_playerCollider;
+	MoveComponent* m_moveComponent;
+	
 };

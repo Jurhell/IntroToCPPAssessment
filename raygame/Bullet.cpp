@@ -3,7 +3,7 @@
 #include "SpriteComponent.h"
 #include "Engine.h"
 
-Bullet::Bullet(Actor* owner, MathLibrary::Vector2 position, MathLibrary::Vector2 velocity, const char* spritepath) : Actor(0, 0, "")
+Bullet::Bullet(Actor* owner, MathLibrary::Vector2 position, MathLibrary::Vector2 velocity, const char* spritepath) : Actor(position.x, position.y, spritepath)
 {
 	MoveComponent* moveComponent = new MoveComponent(175 ,this);
 	addComponent(moveComponent);
