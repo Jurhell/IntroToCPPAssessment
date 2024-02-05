@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include <iostream>
 #include "Player.h"
+#include "raylib.h"
 
 void SampleScene::start()
 {
@@ -74,6 +75,11 @@ void SampleScene::update(float deltaTime)
 	    if (m_enemiesInScene == 5)
 		    m_enemiesInScene = 0;
 	}
+	float i = 1;
+	if (RAYLIB_H::IsKeyDown(KeyboardKey::KEY_E))
+		m_planet->getTransform()->setScale({i,i});
+
+	i++;
 
 	//Respawning player if destroyed
 	if (m_player = nullptr)

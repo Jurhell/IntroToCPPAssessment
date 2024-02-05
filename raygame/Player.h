@@ -21,6 +21,8 @@ public:
 private:
 	float m_speed;
 	float m_lives;
+
+	MathLibrary::Vector2 m_position;
 	ProjectileComponent* m_gun;
 	CircleCollider* m_playerCollider;
 	MoveComponent* m_moveComponent;

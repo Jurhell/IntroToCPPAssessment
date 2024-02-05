@@ -67,6 +67,8 @@ void Enemy::update(float deltaTime)
 		m_currentTime = 0;
 	}
 
+	MathLibrary::Vector2 railMove = { 0, 1 };
+
 	//Moves enemy towards player after passing checks
 	m_enemyMove->setVelocity(playerDirection * 80);
 	getTransform()->lookAt(test->getLocalPosition());

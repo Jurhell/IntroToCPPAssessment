@@ -10,11 +10,12 @@
 
 Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Vector2 position)
 {
-	speed = m_speed;
-	lives = m_lives;
+	m_speed = speed;
+	m_lives = lives;
+	m_position = position;
 	m_gun = (ProjectileComponent*)this->addComponent(new ProjectileComponent(this, 175, "Images/bullet.png"));
 	
-	getTransform()->setLocalPosition(position);
+	getTransform()->setLocalPosition(m_position);
 	getTransform()->setForward({0,-1});
 
 	//Attaching image to player
@@ -24,13 +25,22 @@ Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Ve
 	m_playerCollider = new CircleCollider(25, this);
 	this->setCollider(m_playerCollider);
 
+	//Adding move component to player
 	m_moveComponent = (MoveComponent*)this->addComponent(new MoveComponent(155, this));
-};
+}
+Player::~Player()
+{
+	delete m_gun;
+	delete m_playerCollider;
+	delete m_moveComponent;
+}
+;
 
 void Player::onDestroy()
 {
 	//takes away 1 life from the player
 	m_lives--;
+	m_position = {350, 750};
 
 	if (m_lives >= 0)
 	{
