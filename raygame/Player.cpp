@@ -53,11 +53,11 @@ void Player::update(float deltaTime)
 	Actor::update(deltaTime);
 	MathLibrary::Vector2 m_direction;
 
-	//Get key input from player
+	//Spawning projectiles using left mouse click
 	if (RAYLIB_H::IsMouseButtonPressed(0))
-	{
 		m_gun->spawnProjectile();
-	}
+
+	//Setting the player character's direction using input from player
 	if (RAYLIB_H::IsKeyDown(KeyboardKey::KEY_W))
 	{
 		m_direction = MathLibrary::Vector2(0, -1);
@@ -75,5 +75,6 @@ void Player::update(float deltaTime)
 		m_direction = MathLibrary::Vector2(1, 0);
 	}
 
+	//Setting player's velocity using direction change above 
 	m_moveComponent->setVelocity(m_direction * 100);
 };

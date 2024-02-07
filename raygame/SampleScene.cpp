@@ -75,11 +75,12 @@ void SampleScene::update(float deltaTime)
 	    if (m_enemiesInScene == 5)
 		    m_enemiesInScene = 0;
 	}
-	float i = 1;
+	
+	//Changing the size of the planet and child using player input
+	if (RAYLIB_H::IsKeyDown(KeyboardKey::KEY_R))
+		m_planet->getTransform()->scale({ 1.01f, 1.01f });
 	if (RAYLIB_H::IsKeyDown(KeyboardKey::KEY_E))
-		m_planet->getTransform()->setScale({i,i});
-
-	i++;
+		m_planet->getTransform()->setScale({ 5.0f, 5.0f });
 
 	//Respawning player if destroyed
 	if (m_player = nullptr)
