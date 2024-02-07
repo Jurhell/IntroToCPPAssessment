@@ -25,6 +25,10 @@ bool ActorArray::removeActor(Actor* actor)
     }
 
     bool actorRemoved = false;
+
+    if (m_actorCount < 1)
+        m_actorCount = 1;
+
     //Create a new array with a size one less than our old array
     Actor** newArray = new Actor * [m_actorCount - 1];
     //Create variable to access tempArray index
