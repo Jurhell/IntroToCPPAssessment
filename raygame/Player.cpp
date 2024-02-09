@@ -22,8 +22,8 @@ Player::Player(const char* spritepath, float speed, float lives, MathLibrary::Ve
 	SpriteComponent* spriteComponent = new SpriteComponent((Actor*)this, spritepath);
 
 	//Creating circle collider for player
-	m_playerCollider = new CircleCollider(25, this);
-	this->setCollider(m_playerCollider);
+	//m_playerCollider = new CircleCollider(25, this);
+	//this->setCollider(m_playerCollider);
 
 	//Adding move component to player
 	m_moveComponent = (MoveComponent*)this->addComponent(new MoveComponent(155, this));

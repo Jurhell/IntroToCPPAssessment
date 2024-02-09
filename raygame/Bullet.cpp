@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "SampleScene.h"
+#include "Engine.h"
 
 Bullet::Bullet(Actor* owner, MathLibrary::Vector2 position, MathLibrary::Vector2 velocity, const char* spritepath) : Actor(position.x, position.y, spritepath)
 {
@@ -27,6 +28,15 @@ void Bullet::onCollision(Actor* other)
 	if (other == m_owner)
 		return;
 
-	SampleScene* temp = new SampleScene();
-	temp->removeActor(other);
+	//Checks if other is an enemy
+	if (other->getName() == "Enemy")
+	{
+		SampleScene* temp = new SampleScene();
+		temp->removeActor(other);
+		return;
+	}
+
+	//If not other is destroyed
+		Engine::destroy(other);
+
 }

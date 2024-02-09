@@ -13,7 +13,7 @@ Enemy::Enemy() : Actor(0, 0, "")
 	m_target = nullptr;
 }
 
-Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position) : Actor(0, 0, "")
+Enemy::Enemy(Actor* target, const char* spritePath, MathLibrary::Vector2 position) : Actor(0, 0, "Enemy")
 {
 	m_target = target;
 	getTransform()->setLocalPosition({ position });
@@ -66,8 +66,6 @@ void Enemy::update(float deltaTime)
 		m_bulletSpawner->spawnProjectile();
 		m_currentTime = 0;
 	}
-
-	MathLibrary::Vector2 railMove = { 0, 1 };
 
 	//Moves enemy towards player after passing checks
 	m_enemyMove->setVelocity(playerDirection * 80);
